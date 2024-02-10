@@ -1,0 +1,15 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // TODO: 임시 스타일 수정하기(width, height)
+    width: 360px;
+    height: 720px;
+  }
+}
