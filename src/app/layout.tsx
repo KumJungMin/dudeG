@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './base.scss';
+import '../styles/base.scss';
+import '../styles/reset.scss';
 
 import NextAuthSessionProvider from '../provider/NextAuthSessionProvider';
 
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+        <div className="section">
+          <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+        </div>
       </body>
     </html>
   );

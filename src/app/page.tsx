@@ -1,9 +1,20 @@
-import SignInButton from '../components/signIn/SIgnInButton';
+import Image from 'next/image';
+import Style from './home.module.scss';
+import SignInButton from '../components/home/SIgnInButton';
 
 export default function Home(): JSX.Element {
   return (
-    <main>
-      <h1>시작화면</h1>
+    <main className={Style['home-page']}>
+      <Image
+        src="/"
+        width={280}
+        height={280}
+        style={{
+          objectFit: 'contain',
+          backgroundColor: '#D9D9D9',
+        }}
+        alt="Picture of the author"
+      />
       <SignInButton />
     </main>
   );
