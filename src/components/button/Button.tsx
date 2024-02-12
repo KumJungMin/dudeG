@@ -4,12 +4,21 @@ import Style from './Button.module.scss';
 
 interface ButtonProps {
   children: React.ReactNode;
-  click: () => void;
+  click?: () => void;
+  className?: string;
 }
 
-export default function Button({ children, click }: ButtonProps): JSX.Element {
+export default function Button({
+  children,
+  click,
+  className,
+}: ButtonProps): JSX.Element {
   return (
-    <button className={Style['btn']} type="button" onClick={click}>
+    <button
+      className={`${Style['btn']} ${className}`}
+      type="button"
+      onClick={click}
+    >
       {children}
     </button>
   );
