@@ -12,4 +12,10 @@ body {
     width: 360px;
     height: 720px;
   }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
