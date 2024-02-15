@@ -12,8 +12,8 @@ import KakaoProvider from 'next-auth/providers/kakao';
 export const auth = {
   providers: [
     KakaoProvider({
-      clientId: process.env.KAKAO_CLIENT_ID!,
-      clientSecret: process.env.KAKAO_CLIENT_SECRET!,
+      clientId: process.env.KAKAO_CLIENT_ID as string,
+      clientSecret: process.env.KAKAO_CLIENT_SECRET as string,
     }),
   ],
   // TODO: 타입 에러 해결하기!
@@ -34,7 +34,7 @@ export const auth = {
       return token;
     },
     // redirect는 사용자가 로그인을 성공하면, room 페이지로 이동합니다.
-    redirect: async ({ baseUrl }) => {
+    redirect: ({ baseUrl }: { baseUrl: string }) => {
       return `${baseUrl}/room`;
     },
   },
