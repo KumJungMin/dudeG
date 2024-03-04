@@ -1,14 +1,23 @@
 import mongoose from 'mongoose';
 
-// TODO: NextJS의 Route API를 사용하여 연결하기
+const DB_URI = process.env.MONGO_URL || '';
 
-const connectDB = () => {
-  if (mongoose.connection.readyState >= 1) return;
-  
-  return mongoose.connect(process.env.MONGO_URL!, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+let cached = global.mongoose;
+
+if (!cached) cached = global.mongoose = { conn: null, promise: null };
+
+async function dbConnect() {
+  if (cached.conn) return cached.conn;
+
+  if (!cached.promise) {
+    cached.promise = mongoose
+      .set({ debug: true, strictQuery: false })
+      .connect(`${DB_URI}`)
+      .then((mongoose) => mongoose);
+  }
+
+  cached.conn = await cached.promise;
+  return cached.conn;
 }
 
-export default connectDB;
+export default dbConnect;
