@@ -1,13 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import '../styles/base.scss';
 import '../styles/reset.scss';
+import '../styles/base.scss';
 
 import NextAuthSessionProvider from '../provider/NextAuthSessionProvider';
 
 /** 기본 레이아웃  */
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <div className="section">
           <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
         </div>

@@ -1,16 +1,19 @@
+@import '../styles/variables.scss';
+
 body {
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'LOTTERIACHAB', sans-serif;
+  background-color: $dudeG_Background;
 
   .section {
+    width: 360px;
+    height: 720px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    // TODO: 임시 스타일 수정하기(width, height)
-    width: 360px;
-    height: 720px;
   }
 
   main {
@@ -18,4 +21,17 @@ body {
     flex-direction: column;
     align-items: center;
   }
+
+  p,
+  span,
+  button {
+    font-family: 'LOTTERIACHAB', sans-serif;
+  }
+}
+
+@font-face {
+  font-family: 'LOTTERIACHAB';
+  src: url('./fonts/chab.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
