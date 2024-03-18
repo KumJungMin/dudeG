@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.name {
+  font-size: 20px;
+  line-height: 29px;
+  color: $dudeG_Primary;
+}

@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Style from './room.module.scss';
 import { useSession } from 'next-auth/react';
 import { getUser, postUser } from '@/src/lib/fetchers';
@@ -29,21 +28,18 @@ export default function Room(): JSX.Element {
   }, [status]);
 
   return (
-    <main>
+    <main className={Style['room']}>
+      {/* TODO: X 버튼 추가하기 */}
       <UserProfile />
-      <Image
-        src="/"
-        width={228}
-        height={152}
-        style={{
-          objectFit: 'contain',
-          backgroundColor: '#D9D9D9',
-        }}
-        alt="room"
-      />
-      <Button className={Style['btn-share']}>카카오톡 공유하기</Button>
       <GuestList />
-      <Button className={Style['btn-match']}>매칭 시작!</Button>
+      <Button
+        style={{
+          height: '61px',
+          margin: '64px 0 51px',
+        }}
+      >
+        매칭 시작!
+      </Button>
     </main>
   );
 }

@@ -1,10 +1,19 @@
+@import '../../styles/variables.scss';
+
 .container {
   display: flex;
-  gap: 13px;
   align-items: center;
+  margin: 56px 0 40px;
 }
 
-.name {
-  font-size: 12px;
-  line-height: 14px;
+.nameWrapper {
+  font-size: 20px;
+  line-height: 29px;
+  .name {
+    color: $dudeG_Primary;
+    padding: 0 8px;
+  }
+  .text {
+    color: $dudeG_Secondary;
+  }
 }

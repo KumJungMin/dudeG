@@ -7,8 +7,6 @@ export default function SignInButton(): JSX.Element {
     <Button
       style={{
         width: '278px',
-        fontSize: '16px',
-        lineHeight: '23.44px',
         marginTop: '19px',
       }}
       click={() => signIn()}

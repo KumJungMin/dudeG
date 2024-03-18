@@ -17,7 +17,10 @@ export default function UserProfile() {
         style={{ objectFit: 'cover', borderRadius: '50%' }}
         alt="user profile"
       />
-      <h3 className={Style.name}>{session?.user?.name}님의 대기실</h3>
+      <h3 className={Style.nameWrapper}>
+        <span className={Style.name}>{session?.user?.name || '사용자'}</span>
+        <span className={Style.text}>의 대기실</span>
+      </h3>
     </div>
   );
 }

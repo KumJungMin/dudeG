@@ -1,7 +1,7 @@
-.btn-share {
-  margin: 20px 0 40px;
-}
-
-.btn-match {
-  margin-top: 44px;
+.room {
+  height: 100%;
+  padding: 0 24px;
+  display: grid;
+  grid-template-rows: 136px 1fr 176px;
+  justify-items: center;
 }
