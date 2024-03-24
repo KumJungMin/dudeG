@@ -1,0 +1,14 @@
+@import '../../styles/variables.scss'; // TODO: Remove this line
+
+.linkKakao {
+  width: fit-content;
+  height: $LinkHeight;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto;
+  color: $dudeG_Primary;
+  font-size: 20px;
+  cursor: pointer;
+}

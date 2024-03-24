@@ -5,12 +5,17 @@ $LRMargin: 24px;
 .guestList {
   width: 100%;
   height: 100%;
-  overflow-y: auto;
+  max-height: 532px;
   padding: 24px 24px 28px;
   border-radius: 32px;
   background-color: $dudeG_Surface;
 
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  .container {
+    height: calc(100% - $LinkHeight);
+    padding-bottom: 28px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
 }

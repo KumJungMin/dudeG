@@ -17,11 +17,8 @@ export default function Room(): JSX.Element {
     async function fetchData() {
       if (!session?.user?.id && status !== 'authenticated') return;
       const data = await getUser(session.user.id);
-      if (data.roomId) {
-        alert('이미 방이 생성되어 있습니다.');
-      } else {
-        postUser(session.user.id);
-      }
+
+      if (!data.roomId) postUser(session.user.id);
       // TODO: 방과 UserId를 cookie에 저장하고, 방으로 이동합니다.
     }
     fetchData();

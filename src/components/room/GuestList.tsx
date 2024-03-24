@@ -1,5 +1,6 @@
 import React from 'react';
 import GuestListItem from './GuestListItem';
+import KakaoShareButton from './KakaoShareButton';
 
 import Style from './GuestList.module.scss';
 
@@ -11,9 +12,12 @@ export default function GuestList() {
 
   return (
     <div className={Style.guestList}>
-      {GUEST_LIST.map((guest) => (
-        <GuestListItem key={guest.id} name={guest.name} image={guest.image} />
-      ))}
+      <div className={Style.container}>
+        {GUEST_LIST.map((guest) => (
+          <GuestListItem key={guest.id} name={guest.name} image={guest.image} />
+        ))}
+      </div>
+      <KakaoShareButton />
     </div>
   );
 }
