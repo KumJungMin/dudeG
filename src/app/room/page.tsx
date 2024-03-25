@@ -1,28 +1,41 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
 import Style from './room.module.scss';
 import { useSession } from 'next-auth/react';
+import { Session } from 'next-auth';
 import { getUser, postUser } from '@/src/lib/fetchers';
 import UserProfile from '@/src/components/room/UserProfile';
 import Button from '@/src/components/button/Button';
 import GuestList from '@/src/components/room/GuestList';
-import { useEffect } from 'react';
 
-// TODO: 이 페이지는 사용자가 로그인을 성공하면, 보여집니다.
-// TODO: 사용자가 로그인을 하지 않으면, 로그인 페이지로 이동합니다.
 export default function Room(): JSX.Element {
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession() as {
+    data: Session;
+    status: string;
+  };
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchData() {
-      if (!session?.user?.id && status !== 'authenticated') return;
-      const data = await getUser(session.user.id);
+      const id = session?.user?.id as string;
+      if (status !== 'authenticated' || !id) return;
 
-      if (!data.roomId) postUser(session.user.id);
-      // TODO: 방과 UserId를 cookie에 저장하고, 방으로 이동합니다.
+      const data = await getUser(id);
+      if (data.roomId) setRoomParams(data.roomId);
+      else {
+        const data = await postUser(id);
+        setRoomParams(data.roomId);
+      }
     }
     fetchData();
   }, [status]);
+
+  function setRoomParams(roomId: string) {
+    router.replace(`/room?roomId=${roomId}`);
+  }
 
   return (
     <main className={Style['room']}>

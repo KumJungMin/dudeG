@@ -4,12 +4,13 @@ const headers = {
   'Set-Cookie': 'HttpOnly;Secure;SameSite=None',
 };
 
-export function postUser(userId: string) {
-  return fetch('/api/user', {
+export async function postUser(userId: string) {
+  const data = await fetch('/api/user', {
     method: 'POST',
     headers,
     body: JSON.stringify({ userId }),
   });
+  return data.json();
 }
 
 export async function getUser(userId: string) {

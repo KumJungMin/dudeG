@@ -23,11 +23,9 @@ export async function POST(req: Request) {
       status: 400,
     });
   } else {
-    const roomId = `${userId}-${new Date().getTime()}`; // DB에 저장하기
+    const roomId = `${userId}-${new Date().getTime()}`;
     const user = new User({ userId, roomId });
     await user.save();
-    return new NextResponse('Test created successfully', {
-      status: 200,
-    });
+    return NextResponse.json(user);
   }
 }
