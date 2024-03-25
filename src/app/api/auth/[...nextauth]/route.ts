@@ -16,7 +16,6 @@ export const auth = {
       clientSecret: process.env.KAKAO_CLIENT_SECRET as string,
     }),
   ],
-  // TODO: 타입 에러 해결하기!
   callbacks: {
     // session은 사용자의 정보를 저장하는 객체입니다.
     // session을 생성할 때, 사용자의 id를 session.user.id에 저장합니다.
