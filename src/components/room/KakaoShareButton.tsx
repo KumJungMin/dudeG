@@ -23,7 +23,7 @@ export default function KakaoShareButton() {
   const shareKakao = () => {
     const roomUrl = window.location.href;
 
-    Kakao.Share.sendDefault({
+    kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
         title: 'DudeG',
