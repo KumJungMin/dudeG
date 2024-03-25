@@ -1,29 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect } from 'react';
 
+import kakaoShare from '../../lib/kakaoShare';
 import Style from './KakaoShareButton.module.scss';
 import kakaoLogo from '../../styles/images/kakao-logo.png';
 
 export default function KakaoShareButton() {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const kakao = window.Kakao;
-
-  useEffect(() => {
-    if (!kakao) return;
-
-    kakao.cleanup();
-    kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
-    return () => {
-      kakao.cleanup();
-    };
-  }, [kakao]);
-
-  const shareKakao = () => {
+  function shareKakao() {
     const roomUrl = window.location.href;
 
-    kakao.Share.sendDefault({
+    kakaoShare({
       objectType: 'feed',
       content: {
         title: 'DudeG',
@@ -38,7 +25,7 @@ export default function KakaoShareButton() {
         },
       ],
     });
-  };
+  }
 
   return (
     <button className={Style.linkKakao} onClick={shareKakao}>
