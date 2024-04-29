@@ -24,8 +24,11 @@ export async function POST(req: Request) {
     });
   } else {
     const roomId = `${userId}-${new Date().getTime()}`;
-    const user = new User({ userId, roomId });
-    await user.save();
+    const user = await User.findOneAndUpdate(
+      { userId },
+      { userId, roomId },
+      { new: true, upsert: true },
+    ).exec();
     return NextResponse.json(user);
   }
 }
