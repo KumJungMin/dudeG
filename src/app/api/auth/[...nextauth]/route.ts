@@ -14,6 +14,9 @@ export const auth = {
     KakaoProvider({
       clientId: process.env.KAKAO_CLIENT_ID as string,
       clientSecret: process.env.KAKAO_CLIENT_SECRET as string,
+      // Tip: KakaoProvider의 scope는 사용자의 정보를 가져오는 권한을 설정
+      authorization:
+        'https://kauth.kakao.com/oauth/authorize?scope=friends,profile_image,talk_message,profile_nickname',
     }),
   ],
   callbacks: {
@@ -24,12 +27,17 @@ export const auth = {
       user: {
         ...session.user,
         id: token.sub,
+        token: token.accessToken,
       },
     }),
     // jwt는 사용자의 정보를 저장하는 토큰입니다.
     // jwt를 생성할 때, 사용자의 id를 token.sub에 저장합니다.
-    jwt: async ({ user, token }) => {
+    jwt: async ({ user, token, account }) => {
       if (user) token.sub = user.id;
+      if (account && account.access_token) {
+        // set access_token to the token payload
+        token.accessToken = account.access_token;
+      }
       return token;
     },
     // redirect는 사용자가 로그인을 성공하면, room 페이지로 이동합니다.
@@ -38,6 +46,7 @@ export const auth = {
     },
   },
 };
+
 const handler = NextAuth(auth);
 
 export { handler as GET, handler as POST };
