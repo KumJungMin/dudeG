@@ -1,34 +1,21 @@
 'use client';
 
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 
-import kakaoShare from '../../lib/kakaoShare';
+import selectFriends from '../../lib/kakaoFriend';
 import Style from './KakaoShareButton.module.scss';
 import kakaoLogo from '../../styles/images/kakao-logo.png';
 
 export default function KakaoShareButton() {
-  function shareKakao() {
-    const roomUrl = window.location.href;
-
-    kakaoShare({
-      objectType: 'feed',
-      content: {
-        title: 'DudeG',
-        description: 'DudeG에 초대합니다.',
-        imageUrl: '../../styles/images/kakao-logo.png',
-        link: { mobileWebUrl: roomUrl, webUrl: roomUrl },
-      },
-      buttons: [
-        {
-          title: '참여하기',
-          link: { mobileWebUrl: location.href, webUrl: location.href },
-        },
-      ],
-    });
+  const { data: session } = useSession();
+  async function addFriends() {
+    const data = await selectFriends(session?.user.token);
+    // TODO: zustand 사용하여 친구 목록 추가하기
   }
 
   return (
-    <button className={Style.linkKakao} onClick={shareKakao}>
+    <button className={Style.linkKakao} onClick={addFriends}>
       <Image
         src={kakaoLogo}
         alt="kakao logo"
