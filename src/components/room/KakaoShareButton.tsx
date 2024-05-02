@@ -7,11 +7,25 @@ import selectFriends from '../../lib/kakaoFriend';
 import Style from './KakaoShareButton.module.scss';
 import kakaoLogo from '../../styles/images/kakao-logo.png';
 
+import { useUserStore } from '@/src/stores/useUserStore';
+
 export default function KakaoShareButton() {
+  const { addGuest } = useUserStore();
   const { data: session } = useSession();
+
   async function addFriends() {
-    const data = await selectFriends(session?.user.token);
-    // TODO: zustand 사용하여 친구 목록 추가하기
+    const token = session?.user?.token;
+    const data = token ? await selectFriends(token) : [];
+    if (!data.selectedTotalCount) return;
+
+    for (const friend of data.users) {
+      const {
+        profile_nickname: name,
+        profile_thumbnail_image: image,
+        id,
+      } = friend;
+      addGuest({ id, name, image, receiverId: '', presents: [] });
+    }
   }
 
   return (
@@ -23,7 +37,7 @@ export default function KakaoShareButton() {
         height={28}
         style={{ objectFit: 'contain' }}
       />
-      카카오톡으로 초대하기 &gt;
+      카카오톡으로 추가하기 &gt;
     </button>
   );
 }
