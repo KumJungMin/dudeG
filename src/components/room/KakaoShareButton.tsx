@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 
 import selectFriends from '../../lib/kakaoFriend';
-import Style from './KakaoShareButton.module.scss';
+import styles from './KakaoShareButton.module.scss';
 import kakaoLogo from '../../styles/images/kakao-logo.png';
 
 import { useUserStore } from '@/src/stores/useUserStore';
@@ -29,7 +29,7 @@ export default function KakaoShareButton() {
   }
 
   return (
-    <button className={Style.linkKakao} onClick={addFriends}>
+    <button className={styles.linkKakao} onClick={addFriends}>
       <Image
         src={kakaoLogo}
         alt="kakao logo"

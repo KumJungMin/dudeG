@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-import Style from './room.module.scss';
+import styles from './room.module.scss';
 import { useSession, signOut } from 'next-auth/react';
 import { Session } from 'next-auth';
 import UserProfile from '@/src/components/room/UserProfile';
@@ -42,8 +42,11 @@ export default function Room(): JSX.Element {
   };
 
   return (
-    <main className={Style['room']}>
-      <button className={Style['closeButton']} onClick={handleCloseButtonClick}>
+    <main className={styles['room']}>
+      <button
+        className={styles['closeButton']}
+        onClick={handleCloseButtonClick}
+      >
         <Icon name="close" size={32} />
       </button>
       <UserProfile />

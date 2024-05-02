@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import Style from './GuestListItem.module.scss';
+import styles from './GuestListItem.module.scss';
 
 interface GuestListItemProps {
   name: string;
@@ -10,7 +10,7 @@ interface GuestListItemProps {
 
 export default function GuestListItem({ name, image }: GuestListItemProps) {
   return (
-    <div className={Style.listItem}>
+    <div className={styles.listItem}>
       <Image
         src={image}
         alt="guest profile"
@@ -22,7 +22,7 @@ export default function GuestListItem({ name, image }: GuestListItemProps) {
           backgroundColor: '#D9D9D9',
         }}
       />
-      <span className={Style.name}>{name}</span>
+      <span className={styles.name}>{name}</span>
     </div>
   );
 }

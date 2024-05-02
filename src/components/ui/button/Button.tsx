@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Style from './Button.module.scss';
+import styles from './Button.module.scss';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ export default function Button({
 }: ButtonProps): JSX.Element {
   return (
     <button
-      className={Style['btn']}
+      className={styles['btn']}
       type="button"
       onClick={click}
       style={style}
