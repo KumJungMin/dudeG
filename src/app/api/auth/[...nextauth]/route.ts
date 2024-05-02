@@ -40,10 +40,6 @@ export const auth = {
       }
       return token;
     },
-    // redirect는 사용자가 로그인을 성공하면, room 페이지로 이동합니다.
-    redirect: ({ baseUrl }: { baseUrl: string }) => {
-      return `${baseUrl}/room`;
-    },
   },
 };
 

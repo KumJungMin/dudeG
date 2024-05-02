@@ -9,7 +9,7 @@ export default function SignInButton(): JSX.Element {
         width: '278px',
         marginTop: '19px',
       }}
-      click={() => signIn()}
+      click={() => signIn('kakao', { callbackUrl: '/room', redirect: true })}
     >
       꾹 눌러 시작하기
     </Button>
