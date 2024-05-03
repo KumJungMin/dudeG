@@ -24,5 +24,11 @@
     // 경고표시, 파일 확장자를 .ts나 .tsx 모두 허용함
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "no-useless-catch": "off" // 불필요한 catch 못쓰게 하는 기능 끔
+  },
+  "settings": {
+    // import시 경로를 tsconfig.json에 지정한 경로로 인식하게 함
+    "import/resolver": {
+      "typescript": "./tsconfig.json"
+    }
   }
 }
