@@ -3,5 +3,9 @@
     "stylelint-config-standard-scss",
     "stylelint-config-prettier-scss",
     "stylelint-config-recommended-scss"
-  ]
+  ],
+  "rules": {
+    "scss/dollar-variable-pattern": null,
+    "selector-class-pattern": null
+  }
 }
