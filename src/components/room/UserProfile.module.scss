@@ -1,4 +1,4 @@
-@import '@/src/styles/variables'; // TODO: global import
+// TODO: global import
 
 .container {
   display: flex;
@@ -9,10 +9,12 @@
 .nameWrapper {
   font-size: 20px;
   line-height: 29px;
+
   .name {
     color: $dudeG_Primary;
     padding: 0 8px;
   }
+
   .text {
     color: $dudeG_Secondary;
   }
