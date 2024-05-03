@@ -24,17 +24,21 @@ export default function Room(): JSX.Element {
     status: string;
   };
   const { setUser, resetUser, resetGuest, guests } = useUserStore();
-  const isValidGuest = Object.keys(guests).length > 1;
+
+  const guestList = Object.values(guests);
+  const isValidGuest = guestList.length > 1;
 
   useEffect(() => {
-    async function fetchData() {
-      const user = session?.user as SessionUser;
-      if (status !== 'authenticated' || !user.id) return;
-
-      setUser({ id: user.id, name: user.name, image: user.image });
-    }
     fetchData();
   }, [status]);
+
+  const fetchData = async () => {
+    const user = session?.user as SessionUser;
+    if (status !== 'authenticated' || !user.id) return;
+
+    const { id, name, image } = user;
+    setUser({ id, name, image });
+  };
 
   const handleCloseButtonClick = () => {
     signOut({ callbackUrl: '/', redirect: true });
@@ -51,7 +55,7 @@ export default function Room(): JSX.Element {
         <Icon name="close" size={32} />
       </button>
       <UserProfile />
-      <GuestList />
+      <GuestList has-guest={isValidGuest} guests={guestList} />
       <div className={styles.wrapper}>
         {!isValidGuest && (
           <p className={styles['warningMsg']}>

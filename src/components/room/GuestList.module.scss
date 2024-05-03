@@ -10,6 +10,12 @@ $LRMargin: 24px;
   border-radius: 32px;
   background-color: $dudeG_Surface;
 
+  &.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .container {
     height: calc(100% - $LinkHeight);
     padding-bottom: 28px;
@@ -17,5 +23,14 @@ $LRMargin: 24px;
     display: flex;
     flex-direction: column;
     gap: 32px;
+  }
+
+  .emptyText {
+    font-family: Pretendard, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: $dudeG_Secondary;
+    text-align: center;
+    margin-bottom: 16px;
   }
 }
