@@ -23,7 +23,8 @@ export default function Room(): JSX.Element {
     data: Session;
     status: string;
   };
-  const { setUser, resetUser, resetGuest } = useUserStore();
+  const { setUser, resetUser, resetGuest, guests } = useUserStore();
+  const isValidGuest = Object.keys(guests).length > 1;
 
   useEffect(() => {
     async function fetchData() {
@@ -51,14 +52,21 @@ export default function Room(): JSX.Element {
       </button>
       <UserProfile />
       <GuestList />
-      <Button
-        style={{
-          height: '61px',
-          margin: '64px 0 51px',
-        }}
-      >
-        매칭 시작!
-      </Button>
+      <div className={styles.wrapper}>
+        {!isValidGuest && (
+          <p className={styles['warningMsg']}>
+            매칭을 위해 최소 2명 이상이 필요합니다
+          </p>
+        )}
+        <Button
+          style={{
+            height: '61px',
+            margin: '64px 0 51px',
+          }}
+        >
+          매칭 시작하기
+        </Button>
+      </div>
     </main>
   );
 }

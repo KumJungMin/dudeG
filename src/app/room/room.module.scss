@@ -37,3 +37,20 @@
     opacity: 0.2;
   }
 }
+
+.wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .warningMsg {
+    position: absolute;
+    top: 28px;
+    font-family: Pretendard, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    color: $error;
+  }
+}
