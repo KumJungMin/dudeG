@@ -1,5 +1,5 @@
-import User from '@/src/models/user.module';
-import dbConnect from '@/src/lib/db';
+import User from '@/models/user.module';
+import dbConnect from '@/lib/db';
 import { NextResponse, NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest) {

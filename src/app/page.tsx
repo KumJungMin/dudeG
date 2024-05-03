@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import styles from './home.module.scss';
-import SignInButton from '../components/home/SignInButton';
+import SignInButton from '@/components/home/SignInButton';
 
-import dudeGCover from '../styles/images/duduG_cover.png';
+import dudeGCover from '@/styles/images/duduG_cover.png';
 
 export default function Home(): JSX.Element {
   return (

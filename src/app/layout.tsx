@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 
-import '../styles/reset.scss';
-import '../styles/base.scss';
+import '@/styles/reset.scss';
+import '@/styles/base.scss';
 
-import NextAuthSessionProvider from '../provider/NextAuthSessionProvider';
+import NextAuthSessionProvider from '@/provider/NextAuthSessionProvider';
 
 /** 기본 레이아웃  */
 

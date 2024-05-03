@@ -3,11 +3,11 @@
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 
-import selectFriends from '../../lib/kakaoFriend';
+import { selectFriends } from '@/lib/kakao';
 import styles from './KakaoShareButton.module.scss';
-import kakaoLogo from '../../styles/images/kakao-logo.png';
+import kakaoLogo from '@/styles/images/kakao-logo.png';
 
-import { useUserStore } from '@/src/stores/useUserStore';
+import { useUserStore } from '@/stores/useUserStore';
 
 export default function KakaoShareButton() {
   const { addGuest } = useUserStore();

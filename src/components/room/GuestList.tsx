@@ -1,6 +1,6 @@
 import React from 'react';
-import clsx from 'clsx';
-import { Guest } from '@/src/types/guest';
+import { clsx } from 'clsx';
+import { Guest } from '@/types/guest';
 
 import GuestListItem from './GuestListItem';
 import KakaoShareButton from './KakaoShareButton';

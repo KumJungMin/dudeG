@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
-import type { Guest } from '../types/guest';
+import type { Guest } from '@/types/guest';
 
 interface User {
   id: string;

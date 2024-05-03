@@ -5,12 +5,12 @@ import { useEffect } from 'react';
 import styles from './room.module.scss';
 import { useSession, signOut } from 'next-auth/react';
 import { Session } from 'next-auth';
-import UserProfile from '@/src/components/room/UserProfile';
-import Button from '@/src/components/ui/button/Button';
-import GuestList from '@/src/components/room/GuestList';
-import Icon from '@/src/components/ui/icon/Icon';
+import UserProfile from '@/components/room/UserProfile';
+import Button from '@/components/ui/button/Button';
+import GuestList from '@/components/room/GuestList';
+import Icon from '@/components/ui/icon/Icon';
 
-import { useUserStore } from '@/src/stores/useUserStore';
+import { useUserStore } from '@/stores/useUserStore';
 
 interface SessionUser {
   id: string;
@@ -29,16 +29,15 @@ export default function Room(): JSX.Element {
   const isValidGuest = guestList.length > 1;
 
   useEffect(() => {
+    async function fetchData() {
+      const user = session?.user as SessionUser;
+      if (status !== 'authenticated' || !user.id) return;
+
+      const { id, name, image } = user;
+      setUser({ id, name, image });
+    }
     fetchData();
-  }, [status]);
-
-  const fetchData = async () => {
-    const user = session?.user as SessionUser;
-    if (status !== 'authenticated' || !user.id) return;
-
-    const { id, name, image } = user;
-    setUser({ id, name, image });
-  };
+  }, [status, session?.user, setUser]);
 
   const handleCloseButtonClick = () => {
     signOut({ callbackUrl: '/', redirect: true });

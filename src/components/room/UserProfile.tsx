@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useUserStore } from '@/src/stores/useUserStore';
+import { useUserStore } from '@/stores/useUserStore';
 
 import styles from './UserProfile.module.scss';
 

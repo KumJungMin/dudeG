@@ -1,7 +1,7 @@
 'use client';
 import { signIn } from 'next-auth/react';
 import styles from './SignInButton.module.scss';
-import Button from '@/src/components/ui/button/Button';
+import Button from '@/components/ui/button/Button';
 
 export default function SignInButton(): JSX.Element {
   return (
