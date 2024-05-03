@@ -1,10 +1,11 @@
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Kakao: any;
   }
 }
 
-export default function selectFriends(token: string | null) {
+export function selectFriends(token: string | null) {
   if (!window.Kakao.isInitialized()) {
     window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
   }
