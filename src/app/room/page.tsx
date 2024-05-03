@@ -18,15 +18,14 @@ interface SessionUser {
   image: string;
 }
 
+const MINIMUM_GUEST_COUNT = 2;
+
 export default function Room(): JSX.Element {
   const { data: session, status } = useSession() as {
     data: Session;
     status: string;
   };
   const { setUser, resetUser, resetGuest, guests } = useUserStore();
-
-  const guestList = Object.values(guests);
-  const isValidGuest = guestList.length > 1;
 
   useEffect(() => {
     async function fetchData() {
@@ -54,14 +53,17 @@ export default function Room(): JSX.Element {
         <Icon name="close" size={32} />
       </button>
       <UserProfile />
-      <GuestList has-guest={isValidGuest} guests={guestList} />
+      <GuestList />
       <div className={styles.wrapper}>
-        {!isValidGuest && (
+        {!Object.keys(guests).length && (
           <p className={styles['warningMsg']}>
-            매칭을 위해 최소 2명 이상이 필요합니다
+            매칭을 위해 최소 {MINIMUM_GUEST_COUNT}명 이상이 필요합니다
           </p>
         )}
-        <Button className={styles.startButton} disabled={!isValidGuest}>
+        <Button
+          className={styles.startButton}
+          disabled={Object.keys(guests).length < MINIMUM_GUEST_COUNT}
+        >
           매칭 시작하기
         </Button>
       </div>

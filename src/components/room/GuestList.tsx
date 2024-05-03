@@ -1,28 +1,24 @@
 import React from 'react';
 import { clsx } from 'clsx';
-import { Guest } from '@/types/guest';
 
 import GuestListItem from './GuestListItem';
 import KakaoShareButton from './KakaoShareButton';
+import { useUserStore } from '@/stores/useUserStore';
 
 import styles from './GuestList.module.scss';
 
-interface GuestListProps {
-  hasGuest?: boolean;
-  guests?: Guest[];
-}
+export default function GuestList() {
+  const { guests } = useUserStore();
 
-export default function GuestList(props: GuestListProps) {
-  const { hasGuest = false, guests = [] } = props;
   const guestListClasses = clsx(styles.guestList, {
-    [styles.empty]: !hasGuest,
+    [styles.empty]: !Object.keys(guests).length,
   });
 
   return (
     <div className={guestListClasses}>
-      {hasGuest ? (
+      {Object.keys(guests).length > 0 ? (
         <div className={styles.container}>
-          {guests.map((guest) => (
+          {Object.values(guests).map((guest) => (
             <GuestListItem
               key={guest.id}
               name={guest.name}
