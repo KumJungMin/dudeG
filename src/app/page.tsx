@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from '../components/home/Home.module.scss';
+import styles from './home.module.scss';
 import SignInButton from '../components/home/SignInButton';
 
 import dudeGCover from '../styles/images/duduG_cover.png';

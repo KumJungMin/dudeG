@@ -11,6 +11,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "mongoose": "^8.1.2",
     "next": "14.1.0",
     "next-auth": "^4.24.5",

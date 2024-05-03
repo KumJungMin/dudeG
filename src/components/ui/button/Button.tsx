@@ -1,26 +1,19 @@
 'use client';
 
 import React from 'react';
+import clsx from 'clsx';
 import styles from './Button.module.scss';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  click?: () => void;
-  style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
-export default function Button({
-  children,
-  click,
-  style,
-}: ButtonProps): JSX.Element {
+export default function Button(props: ButtonProps) {
+  const { children, onClick, className, ...rest } = props;
+  const btnClasses = clsx(styles['btn'], className);
   return (
-    <button
-      className={styles['btn']}
-      type="button"
-      onClick={click}
-      style={style}
-    >
+    <button className={btnClasses} type="button" onClick={onClick} {...rest}>
       {children}
     </button>
   );

@@ -14,7 +14,12 @@
   border: 4px solid #030112;
   background-color: $dudeG_Primary;
 
-  &:active {
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  &:not(:disabled):active {
     transform: translateY(5px);
     box-shadow: 0 0 0 0 #d9d7e3;
     transition: all 0.3s ease-out;

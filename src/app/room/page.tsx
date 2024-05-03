@@ -58,12 +58,7 @@ export default function Room(): JSX.Element {
             매칭을 위해 최소 2명 이상이 필요합니다
           </p>
         )}
-        <Button
-          style={{
-            height: '61px',
-            margin: '64px 0 51px',
-          }}
-        >
+        <Button className={styles.startButton} disabled={!isValidGuest}>
           매칭 시작하기
         </Button>
       </div>
