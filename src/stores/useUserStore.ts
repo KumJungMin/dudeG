@@ -1,28 +1,16 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
+import type { Guest } from '../types/guest';
+
 interface User {
   id: string;
   image: string;
   name: string;
 }
 
-interface Guest {
-  id: string;
-  image: string;
-  name: string;
-  receiverId: string;
-  presents: Present[];
-}
-
 interface Guests {
   [key: string]: Guest;
-}
-
-interface Present {
-  name: string;
-  price: number;
-  link: string;
 }
 
 const defaultUser: User = {
