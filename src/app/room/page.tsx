@@ -1,10 +1,13 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 import styles from './room.module.scss';
 import { useSession, signOut } from 'next-auth/react';
 import { Session } from 'next-auth';
+import { pairPeople } from './utils';
+
 import UserProfile from '@/components/room/UserProfile';
 import Button from '@/components/ui/button/Button';
 import GuestList from '@/components/room/GuestList';
@@ -20,12 +23,13 @@ interface SessionUser {
 
 const MINIMUM_GUEST_COUNT = 2;
 
-export default function Room(): JSX.Element {
+export default function Room() {
+  const router = useRouter();
   const { data: session, status } = useSession() as {
     data: Session;
     status: string;
   };
-  const { setUser, resetUser, resetGuest, guests } = useUserStore();
+  const { setUser, resetUser, resetGuest, guests, setGuests } = useUserStore();
 
   useEffect(() => {
     async function fetchData() {
@@ -42,6 +46,19 @@ export default function Room(): JSX.Element {
     signOut({ callbackUrl: '/', redirect: true });
     resetUser();
     resetGuest();
+  };
+
+  const handleStartButtonClick = () => {
+    const pairs = pairPeople(Object.keys(guests));
+    const updatedGuest = Object.entries(guests).reduce(
+      (acc, [key, guest]) => {
+        acc[key] = { ...guest, receiverId: pairs[key] };
+        return acc;
+      },
+      {} as typeof guests,
+    );
+    setGuests(updatedGuest);
+    router.push('/result');
   };
 
   return (
@@ -63,6 +80,7 @@ export default function Room(): JSX.Element {
         <Button
           className={styles.startButton}
           disabled={Object.keys(guests).length < MINIMUM_GUEST_COUNT}
+          onClick={handleStartButtonClick}
         >
           매칭 시작하기
         </Button>

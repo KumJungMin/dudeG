@@ -27,6 +27,7 @@ interface UserStore {
 
 interface GuestStore {
   guests: Guests;
+  setGuests: (guests: Guests) => void;
   addGuest: (guest: Guest) => void;
   resetGuest: () => void;
   deleteGuest: (guestId: string) => void;
